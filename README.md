@@ -32,6 +32,7 @@ With increasing urbanization, demand for smart parking systems has grown. This p
 
 ---
 
+<pre lang="markdown"> ```mermaid graph TD A[CSV Dataset (dataset.csv)] -->|Static Input| B[Pathway Pipeline] B --> C[Preprocessing & Validation] C --> D[Feature Engineering: Time, Traffic, Vehicle] D --> E1[Model 1: Basic Price = (Occupancy / Capacity) * 10] D --> E2[Model 2: Demand Score + Normalized Price] E1 --> F[Final Data Table] E2 --> F F --> G[Output CSV (model2_output.csv)] G --> H[Pandas DataFrame] H --> I[Bokeh Plot (Interactive Pricing Chart)] ``` </pre>
 ## 🛠 Tech Stack
 
 | Component        | Tool/Library        |
