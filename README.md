@@ -34,7 +34,7 @@ With increasing urbanization, demand for smart parking systems has grown. This p
 
 ### 🧭 Architecture Diagram
 
-![Architecture](./architecture.png)
+![Architecture](./architecture)
 
 
 ## 🛠 Tech Stack
