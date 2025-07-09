@@ -13,7 +13,6 @@ This project simulates real-time dynamic pricing for urban parking lots using oc
 - [Project Structure](#-project-structure)
 - [How to Run](#-how-to-run)
 - [Visualization Samples](#-visualization-samples)
-- [References](#-references)
 
 ---
 
