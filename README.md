@@ -74,45 +74,110 @@ Demand = α * (Occupancy / Capacity)
 
 ---
 
-## 📂 Project Structure
+## Project Workflow
 
-capstone-parking-dynamic-pricing/
-│
-── dataset.csv # Source dataset
-── final_capstone_project.ipynb # Jupyter Notebook with Model 2 logic
-── model2_output.csv # Final Pathway output with dynamic pricing
-── bokeh_plot.png # Model 1 visualization output
-── bokeh_plot_2.png # Model 2 visualization output
--─ README.md # Project documentation
-
+### 1. Input Source
+The input comes from `dataset.csv`, containing:
+- Occupancy and capacity of each lot
+- Queue length
+- Vehicle type (car, truck, bike)
+- Traffic condition (low, medium, high)
+- Date and time of observation
 
 ---
 
-## 🚀 How to Run
+### 2. Ingestion and Preprocessing (Pathway)
+- Data is loaded via `pathway.io.csv.read()` in **static mode**
+- Invalid rows are removed (e.g., negative occupancy)
+- Timestamps are merged into `datetime_str`
+- Hour of day is extracted for later modeling
 
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/perrysolid/Capstone_IITG.git
-   cd Capstone_IITG
+---
+
+### 3. Feature Engineering
+- Assign **vehicle type weight** (e.g., truck = 1.5, bike = 0.5)
+- Assign **traffic weight** (e.g., high = 1.3, low = 1.0)
+- Compute **occupancy rate** = `Occupancy / Capacity`
+
+---
+
+### 4. Pricing Models
+
+#### Model 1
+Simple model:
+```
+Price = (Occupancy / Capacity) * 10
+```
+
+#### Model 2
+Advanced pricing using weighted demand score:
+```
+Demand Score = α·(Occupancy/Capacity) + β·Queue + γ·Traffic + δ·SpecialDay + ε·VehicleWeight + ζ·HourFactor
+```
+- Scores are normalized and converted to price
+- Price is bounded between **0.5x** and **2x** base price (base = ₹10)
+
+---
+
+### 5. Output Generation
+- Final enriched output is written to `model2_output.csv`
+- Includes: demand score, normalized demand, and computed dynamic price
+
+---
+
+### 6. Visualization (Bokeh + Panel)
+- Output is read using **pandas**
+- Time-series line plots show price variation across parking lots
+- Interactive Bokeh chart rendered inside Jupyter using Panel
 
 
-Run all cells to:
-
-Load dataset.csv
-
-Simulate streaming
-
-Compute prices with Pathway
-
-Visualize using Bokeh and Panel
-
-## 📈 Dynamic Pricing Visualizations
 
 ### Model 1 Output
 ![Model 1 Visualization](bokeh_plot.png)
 
 ### Model 2 Output
 ![Model 2 Visualization](bokeh_plot_2.png)
+
+
+## Tech Stack
+
+- Python 3.9
+- [Pathway](https://pathway.com/)
+- Pandas
+- Bokeh
+- Panel
+
+---
+
+## Run Instructions
+
+1. Clone the repository
+2. Install dependencies:
+    ```
+    pip install pathway bokeh panel pandas
+    ```
+3. Place `dataset.csv` in root directory
+4. Run the notebook or script to generate output and plot
+
+---
+
+## References
+
+- Pathway Documentation: https://pathway.com/docs/
+- Bokeh Docs: https://docs.bokeh.org/
+- Panel Docs: https://panel.holoviz.org/
+
+---
+
+## Author
+
+**Parth Mishra**  
+B.E. Computer Engineering  
+Thapar Institute of Engineering and Technology, Patiala  
+
+---
+
+
 
 
 
