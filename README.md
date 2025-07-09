@@ -102,7 +102,14 @@ Compute prices with Pathway
 
 Visualize using Bokeh and Panel
 
-##Visualization Samples
+## 📈 Dynamic Pricing Visualizations
+
+### Model 1 Output
+![Model 1 Visualization](bokeh_plot.png)
+
+### Model 2 Output
+![Model 2 Visualization](bokeh_plot_2.png)
+
 
 
 
